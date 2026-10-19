@@ -1,0 +1,125 @@
+{
+  "name": "shift6foribmi",
+  "displayName": "Shift6 for IBM i",
+  "description": "Formatter for IBM i RPGLE free-format: align **FREE, base indent and block nesting.",
+  "author": "Levent Akdogan (Lakdogan)",
+  "contributors": [
+    "Levent Akdogan (Lakdogan)"
+  ],
+  "version": "0.3.3",
+  "publisher": "lakdogan",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Formatters"
+  ],
+  "activationEvents": [
+    "onLanguage:rpgle",
+    "onLanguage:rpg",
+    "onCommand:editor.action.formatDocument"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "configuration": {
+      "title": "Shift6 for IBM i",
+      "properties": {
+        "shift6.spaces": {
+          "type": "number",
+          "default": 6,
+          "minimum": 0,
+          "description": "Number of spaces to add at the start of each line."
+        },
+        "shift6.blockIndent": {
+          "type": "number",
+          "default": 2,
+          "minimum": 0,
+          "description": "Extra spaces per nested block (IF/DOW/DOU/FOR/SELECT/MONITOR/PROC/etc.)."
+        },
+        "shift6.collapseTokenSpaces": {
+          "type": "boolean",
+          "default": true,
+          "description": "Collapse multiple spaces between tokens (outside of string literals) down to a single space."
+        },
+        "shift6.trimStringParentheses": {
+          "type": "boolean",
+          "default": true,
+          "description": "Trim whitespace inside parentheses that only contain a single string literal."
+        },
+        "shift6.alignPlusContinuation": {
+          "type": "boolean",
+          "default": true,
+          "description": "Align lines that start with + to the first + operator column in the previous line."
+        },
+        "shift6.alignProcedureCallParameters": {
+          "type": "boolean",
+          "default": false,
+          "description": "Align leading ':' continuation parameters under the opening paren + 1 and move the closing ')' to its own aligned line."
+        },
+        "shift6.continuationColumn": {
+          "type": "number",
+          "default": 66,
+          "minimum": 40,
+          "description": "Column limit for wrapping long binary-operator expressions onto a new continuation line."
+        },
+        "shift6.joinAsteriskTokensInDecl": {
+          "type": "boolean",
+          "default": true,
+          "description": "Join tokens after * in DCL-PI/DCL-PR/DCL-PROC/CTL-OPT lines (e.g., *n, *no, *new)."
+        },
+        "shift6.wrapLongStrings": {
+          "type": "boolean",
+          "default": false,
+          "description": "Automatically wrap long single string literals into concatenated continuation lines."
+        },
+        "shift6.fixMultilineStringLiterals": {
+          "type": "boolean",
+          "default": true,
+          "description": "Normalize multi-line single-quote literals into explicit concatenated strings."
+        },
+        "shift6.concatStyle": {
+          "type": "string",
+          "enum": [
+            "compact",
+            "one-per-line",
+            "fill"
+          ],
+          "default": "compact",
+          "description": "Control how string concatenations are wrapped across lines (compact, one-per-line, fill)."
+        },
+        "shift6.execSqlKeywordCase": {
+          "type": "string",
+          "enum": [
+            "lower",
+            "upper"
+          ],
+          "default": "lower",
+          "description": "Controls keyword casing inside exec sql blocks (lower or upper)."
+        }
+      }
+    },
+    "documentFormatting": true
+  },
+  "scripts": {
+    "vscode:prepublish": "tsc -p ./",
+    "compile": "tsc -p ./",
+    "typecheck": "tsc -p ./ --noEmit",
+    "watch": "tsc -w -p ./",
+    "package": "npm run compile",
+    "test:rules": "npm run compile && node out/scripts/rule-tests.js"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.85.0",
+    "typescript": "^5.9.3",
+    "vsce": "^2.15.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lakdogan/shift6foribmi"
+  },
+  "homepage": "https://github.com/lakdogan/shift6foribmi#readme",
+  "icon": "assets/icon.png",
+  "bugs": {
+    "url": "https://github.com/lakdogan/shift6foribmi/issues"
+  }
+}

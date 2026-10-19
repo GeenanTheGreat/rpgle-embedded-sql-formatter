@@ -1,0 +1,17 @@
+# Exclude development stuff
+.vscode/**
+.vscode-test/**
+out/test/**
+**/*.map
+node_modules/@types/**
+
+# Do NOT exclude assets
+# assets/** must be included
+
+# Do NOT exclude src:
+# src/** must be included, because the extension needs it
+
+# These can also be excluded
+.git/**
+.vscodeignore
+.gitignore
